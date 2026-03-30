@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    h2 {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+      background: #333;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Contact Submissions</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Service</th>
+      <th>Message</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody"></tbody>
+</table>
+
+<script>
+  async function loadData() {
+    const res = await fetch("http://localhost:5000/api/contacts");
+    const data = await res.json();
+
+    const table = document.getElementById("tableBody");
+    table.innerHTML = "";
+
+    data.forEach(contact => {
+      const row = `
+        <tr>
+          <td>${contact.name}</td>
+          <td>${contact.email}</td>
+          <td>${contact.phone}</td>
+          <td>${contact.service}</td>
+          <td>${contact.message}</td>
+        </tr>
+      `;
+      table.innerHTML += row;
+    });
+  }
+
+  loadData();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webryx Technologies</title>
+
+<style>
+body{margin:0;font-family:Arial;background:#f5f7fb}
+header{display:flex;justify-content:space-between;align-items:center;padding:15px 50px;background:#fff}
+header img{height:60px}
+nav a{margin:0 15px;text-decoration:none;color:#333}
+.call-btn{background:#4b4f8f;color:#fff;padding:10px 20px;border-radius:20px;text-decoration:none}
+.hero{display:flex;justify-content:space-between;padding:50px;background:#4b4f8f;color:#fff}
+.form-box{background:#fff;padding:20px;border-radius:10px;width:320px;color:#000}
+.form-box input,.form-box textarea,.form-box select{width:100%;margin:10px 0;padding:10px}
+button{width:100%;padding:10px;background:#4b4f8f;color:#fff;border:none}
+.services,.about,.footer{padding:50px;text-align:center}
+.cards{display:flex;justify-content:space-around}
+.card{width:22%;padding:20px;background:#fff;box-shadow:0 0 10px rgba(0,0,0,0.1)}
+.footer{background:#222;color:#fff}
+</style>
+</head>
+
+<body>
+
+<header>
+<img src="logo.png.png" alt="logo">
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="services.html">Services</a>
+<a href="contact.html">Contact</a>
+<a href="tel:8678988433" class="call-btn">Call Now</a>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>Empower Your Brand With Webryx</h1>
+<p>Your partner in growth and digital solutions.</p>
+</div>
+
+<div class="form-box">
+<h3>Contact Us</h3>
+<form id="contactform">
+<input type="text" id="name" placeholder="Name" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="text" id="phone" placeholder="Phone" required>
+<select id="service">
+<option>Web Designing</option>
+<option>Web Development</option>
+<option>Digital Marketing</option>
+</select>
+<textarea id="message" placeholder="Message"></textarea>
+<button type="submit">Submit</button>
+</form>
+</div>
+</section>
+
+<section class="services">
+<h2>Our Services</h2>
+<div class="cards">
+<div class="card">Web Designing</div>
+<div class="card">Web Development</div>
+<div class="card">Digital Marketing</div>
+<div class="card">E-commerce Development</div>
+</div>
+</section>
+
+<section class="about">
+<h2>About Us</h2>
+<p>Webryx Technologies is a modern web design and development company helping businesses grow online.</p>
+</section>
+
+<div class="footer">
+<p>Email: webryxtechnologies@gmail.com</p>
+<p>Phone: 8678988433</p>
+<p>
+<a href="https://www.linkedin.com/in/webryx-technologies-0482283bb" target="_blank" style="color:#fff;">
+LinkedIn Profile
+</a>
+</p>
+</div>
+
+<script>
+const form = document.getElementById("contactform");
+
+form.addEventListener("submit", async (e) => {
+ e.preventDefault();
+
+ const data = {
+  name: document.getElementById("name").value,
+  email: document.getElementById("email").value,
+  phone: document.getElementById("phone").value,
+  service: document.getElementById("service").value,
+  message: document.getElementById("message").value
+ };
+
+ await fetch("http://localhost:5000/api/contact", {
+  method: "POST",
+  headers: {"Content-Type":"application/json"},
+  body: JSON.stringify(data)
+ });
+
+ alert("Submitted");
+});
+</script>
+
+</body>
+</html>

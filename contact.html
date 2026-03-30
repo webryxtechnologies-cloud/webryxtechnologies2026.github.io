@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact</title>
+<style>
+body{margin:0;font-family:Arial;background:#f5f7fb}
+header{display:flex;justify-content:space-between;padding:15px 50px;background:#fff}
+nav a{margin:0 15px;text-decoration:none;color:#333}
+.form-box{padding:50px;text-align:center}
+input,textarea,select{width:300px;margin:10px;padding:10px}
+button{padding:10px 20px;background:#4b4f8f;color:#fff;border:none}
+.footer{background:#222;color:#fff;padding:30px;text-align:center}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="services.html">Services</a>
+<a href="contact.html">Contact</a>
+</nav>
+</header>
+
+<div class="form-box">
+<h2>Contact Us</h2>
+<form id="form">
+<input id="name" placeholder="Name" required>
+<input id="email" placeholder="Email" required>
+<input id="phone" placeholder="Phone" required>
+<select id="service">
+<option>Web Designing</option>
+<option>Web Development</option>
+</select>
+<textarea id="message"></textarea>
+<button type="submit">Submit</button>
+</form>
+</div>
+
+<div class="footer">
+<p>Email: webryxtechnologies@gmail.com</p>
+<p>Phone: 8678988433</p>
+<p><a href="https://www.linkedin.com/in/webryx-technologies-0482283bb" target="_blank" style="color:#fff;">LinkedIn</a></p>
+</div>
+
+<script>
+const form = document.getElementById("form");
+form.addEventListener("submit", async (e) => {
+ e.preventDefault();
+ const data = {
+  name: name.value,
+  email: email.value,
+  phone: phone.value,
+  service: service.value,
+  message: message.value
+ };
+ await fetch("http://127.0.0.1:5000/api/contact",{
+  method:"POST",
+  headers:{"Content-Type":"application/json"},
+  body:JSON.stringify(data)
+ });
+ alert("Submitted");
+});
+</script>
+
+</body>
+</html>
